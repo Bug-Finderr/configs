@@ -1,0 +1,3 @@
+[submodule "windows/powershell/Optimize-PSReadlineHistory"]
+	path = windows/powershell/Optimize-PSReadlineHistory
+	url = https://github.com/Bug-Finderr/Optimize-PSReadlineHistory.git
