@@ -1,0 +1,37 @@
+#!/bin/bash
+
+source "$(dirname "$0")/common.sh"
+
+active_memory=$(vm_stat | grep 'Pages active' | awk '{print int($3*4096/1024/1024 + 0.5)}')
+total_memory=$(sysctl -n hw.memsize | awk '{print int($1/1024/1024)}')
+memory_load=$((active_memory * 100 / total_memory))
+cpu_usage=$(top -l 1 | grep -E "^CPU" | awk '{print $3+$5"%"}')
+battery_status=$(pmset -g batt | grep -o 'charging\|discharging\|charged')
+battery_percentage=$(pmset -g batt | grep -o '[0-9]\+%')
+remaining_time=$(pmset -g batt | grep -o '[0-9:]\+ remaining' | cut -d' ' -f1)
+
+# Format battery time remaining
+if [[ "$battery_status" == "discharging" && -n "$remaining_time" && "$remaining_time" != "0:00" ]]; then
+  battery_time="($remaining_time remaining)"
+else
+  battery_time=""
+fi
+
+echo -e "\n${COLOR_BLUE}Memory:${COLOR_RESET} ${active_memory}MB (${memory_load}%)   ${COLOR_LAVENDER}CPU Usage:${COLOR_RESET} ${cpu_usage}   ${COLOR_PINK}Battery:${COLOR_RESET} ${battery_percentage} ${battery_status} ${battery_time}\n"
+
+startup_time=$(/usr/bin/time -p zsh -f -c exit 2>&1 | awk '/real/ {print $2}')
+
+green_msg="${COLOR_GREEN}✓ ${MSG_FAST}${COLOR_RESET}"
+yellow_msg="${COLOR_YELLOW}⚠ ${MSG_MEDIUM}${COLOR_RESET}"
+red_msg="${COLOR_RED}✗ ${MSG_SLOW}${COLOR_RESET}"
+
+joke=$(awk -v t="$startup_time" \
+           -v green_msg="$green_msg" \
+           -v yellow_msg="$yellow_msg" \
+           -v red_msg="$red_msg" \
+      'BEGIN {
+         printf("Shell startup time: %.3f sec\n\n", t);
+         printf("%s", t < 0.8 ? green_msg : (t < 2 ? yellow_msg : red_msg));
+}')
+
+echo -e "$joke\n"

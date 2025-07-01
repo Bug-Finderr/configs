@@ -1,0 +1,88 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "blue": "#89B4FA",
+    "closer": "p:os",
+    "lavender": "#B4BEFE",
+    "os": "#ACB0BE",
+    "pink": "#F5C2E7",
+    "green": "#A6E3A1",
+    "yellow": "#F9E2AF",
+    "red": "#FF5555",
+    "gray": "#6C7086"
+  },
+  "upgrade": {
+    "source": "cdn",
+    "interval": "168h",
+    "auto": false,
+    "notice": false
+  },
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "python",
+          "style": "plain",
+          "foreground": "p:green",
+          "template": "{{ if .Venv }}(venv) {{ end }}"
+        },
+        {
+          "properties": {
+            "folder_icon": "...",
+            "home_icon": "~",
+            "style": "agnoster_short",
+            "max_depth": 2
+          },
+          "template": "{{ .Path }} ",
+          "foreground": "p:pink",
+          "type": "path",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "branch_icon": "\ue725 ",
+            "cherry_pick_icon": "\ue29b ",
+            "commit_icon": "\uf417 ",
+            "fetch_status": false,
+            "fetch_upstream_icon": false,
+            "merge_icon": "\ue727 ",
+            "no_commits_icon": "\uf0c3 ",
+            "rebase_icon": "\ue728 ",
+            "revert_icon": "\uf0e2 ",
+            "tag_icon": "\uf412 "
+          },
+          "template": "{{ .HEAD }} ",
+          "foreground": "p:lavender",
+          "type": "git",
+          "style": "plain"
+        },
+        {
+          "template": "\uf105",
+          "foreground": "p:closer",
+          "type": "text",
+          "style": "plain"
+        }
+      ]
+    },
+    {
+      "type": "rprompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "executiontime",
+          "style": "plain",
+          "foreground": "p:gray",
+          "template": "{{ if gt .Ms 500 }}{{ .FormattedMs }}{{ end }} ",
+          "properties": {
+            "always_enabled": true,
+            "style": "round"
+          }
+        }
+      ]
+    }
+  ],
+  "version": 3,
+  "final_space": true
+}

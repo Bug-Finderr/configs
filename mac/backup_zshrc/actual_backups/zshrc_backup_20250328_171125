@@ -1,0 +1,78 @@
+export GPG_TTY=$(tty)
+
+PATH=~/.console-ninja/.bin:$PATH
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+intel() {
+  arch -x86_64 $@
+}
+export PYTHON=$(which python2.7)
+export PATH="/usr/local/bin:$PATH"
+export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/mysql@8.0/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/mysql@8.0/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/mysql@8.0/lib/pkgconfig"
+eval "$(rbenv init -)"
+export RUBY_CFLAGS="-Wno-error=implicit-function-declaration"
+export RUBY_CFLAGS=-DUSE_FFI_CLOSURE_ALLOC
+export LDFLAGS="-L/opt/homebrew/opt/libffi/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libffi/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
+export BUNDLE_GEMFILE=Gemfile.next259
+export GOPATH=$HOME/go
+export GOROOT=/usr/local/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+
+export PATH="/opt/homebrew/opt/imagemagick@6/bin:$PATH"
+export PATH="$(pyenv root)/shims:${PATH}"
+PATH=$(pyenv root)/shims:$PATH
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export ENV_ID="scaler"
+export NODE_OPTIONS=--max_old_space_size=8192
+export WEBPACK_DISABLE_LEGACY_PACKS=true
+eval "$(oh-my-posh init zsh --config ~/tweaks/.bread.omp.json)"
+
+
+#Aliases
+alias c="clear&&clear"
+alias e=exit
+alias vim=nvim
+alias sql="brew services start mysql@8.0"
+alias cf="cd /Users/bug/Dev/companion-frontend/ && yarn dev"
+alias cb="
+  cd /Users/bug/Dev/companion-backend/ && 
+  open -a Docker --args --no-start && 
+  while ! docker info &>/dev/null; do 
+    sleep 1; 
+  done &&
+  osascript -e 'tell application \"System Events\" to tell process \"Docker Desktop\" to keystroke \"w\" using command down' && 
+  docker-compose -f deploy/docker-compose.yml -f deploy/docker-compose.dev.yml --project-directory . up
+"
+alias vc="cd /Users/bug/Dev/vector/packages/companion/ && yarn storybook"
+alias mb="cd /Users/bug/Dev/myinterviewtrainer && sql && rails s"
+alias mf="cd /Users/bug/Dev/myinterviewtrainer && yarn dev"
+alias cvenv="python -m venv venv && source venv/bin/activate && pip install --upgrade pip"
+
+# Function to run nvm use if .nvmrc exists
+autoload -U add-zsh-hook
+load_nvmrc() {
+  if [ -f ".nvmrc" ]; then
+    nvm use
+  fi
+}
+
+# Hook the function to run when changing directories
+add-zsh-hook chpwd load_nvmrc
+
+# Run it when opening a new terminal as well
+load_nvmrc
+
+# Welcome msg
+if [ -f ~/tweaks/welcome.sh ]; then
+  ~/tweaks/welcome.sh
+fi
+
