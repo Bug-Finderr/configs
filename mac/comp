@@ -1,0 +1,34 @@
+#!/bin/zsh
+
+# check if an argument is provided
+if [ -z "$1" ]; then
+  echo "Usage: component <path/to/ComponentName>"
+  exit 1
+fi
+
+# get absolute path and component name
+component_path="$1"
+component_dir="${component_path:A}"
+component_name="${component_dir:t}"
+
+mkdir -p "$component_dir"
+
+echo "export { default } from './$component_name';" > "$component_dir/index.ts"
+
+cat > "$component_dir/$component_name.tsx" <<EOF
+import styles from './$component_name.module.scss';
+
+export default function $component_name() {
+  return (
+    <div className={styles.container}>
+      Les go
+    </div>
+  );
+}
+EOF
+
+cat > "$component_dir/$component_name.module.scss" <<EOF
+.container {
+  // Add your styles here
+}
+EOF

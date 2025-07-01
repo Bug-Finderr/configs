@@ -9,7 +9,9 @@
     "green": "#A6E3A1",
     "yellow": "#F9E2AF",
     "red": "#FF5555",
-    "gray": "#6C7086"
+    "gray": "#6C7086",
+    "mauve": "#CBA6F7",
+    "peach": "#FAB387"
   },
   "upgrade": {
     "source": "cdn",
@@ -43,17 +45,20 @@
         {
           "properties": {
             "branch_icon": "\ue725 ",
-            "cherry_pick_icon": "\ue29b ",
-            "commit_icon": "\uf417 ",
-            "fetch_status": false,
-            "fetch_upstream_icon": false,
-            "merge_icon": "\ue727 ",
-            "no_commits_icon": "\uf0c3 ",
-            "rebase_icon": "\ue728 ",
-            "revert_icon": "\uf0e2 ",
-            "tag_icon": "\uf412 "
+            "fetch_status": true,
+            "fetch_upstream_icon": true,
+            "local_changes_color": "p:yellow",
+            "working_color": "p:peach",
+            "staging_color": "p:green",
+            "status_colors_enabled": true,
+            "display_status": true,
+            "display_stash_count": true,
+            "display_upstream_icon": true,
+            "github_icon": " ",
+            "gitlab_icon": " ",
+            "bitbucket_icon": " "
           },
-          "template": "{{ .HEAD }} ",
+          "template": "{{ if .RepoName }}{{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} +{{ .Working.Added }} ~{{ .Working.Modified }} -{{ .Working.Deleted }}{{ end }}{{ if .Staging.Changed }} \uF046 {{ .Staging.String }}{{ end }} {{ end }}",
           "foreground": "p:lavender",
           "type": "git",
           "style": "plain"
@@ -71,13 +76,32 @@
       "alignment": "right",
       "segments": [
         {
+          "type": "battery",
+          "style": "plain",
+          "foreground_templates": [
+            "{{ if eq \"Charging\" .State.String }}p:blue{{ end }}",
+            "{{ if eq \"Discharging\" .State.String }}{{ if lt .Percentage 15 }}p:red{{ else if lt .Percentage 50 }}p:yellow{{ else }}p:green{{ end }}{{ end }}",
+            "{{ if eq \"Full\" .State.String }}p:green{{ end }}"
+          ],
+          "template": "{{ if not (eq .Percentage 100) }}{{ if eq \"Charging\" .State.String }}\u26A1{{ end }}{{ .Percentage }}% {{ end }}"
+        },
+        {
+          "type": "time",
+          "style": "plain",
+          "foreground": "p:mauve",
+          "template": "{{ .CurrentDate | date \"15:04\" }} ",
+          "properties": {
+            "time_format": "15:04:05"
+          }
+        },
+        {
           "type": "executiontime",
           "style": "plain",
-          "foreground": "p:gray",
+          "foreground": "p:peach",
           "template": "{{ if gt .Ms 500 }}{{ .FormattedMs }}{{ end }} ",
           "properties": {
             "always_enabled": true,
-            "style": "round"
+            "style": "austin"
           }
         }
       ]

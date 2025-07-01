@@ -1,0 +1,109 @@
+# Env Vars
+export GPG_TTY=$(tty)
+export ENV_ID="scaler"
+export NODE_OPTIONS=--max_old_space_size=8192
+export WEBPACK_DISABLE_LEGACY_PACKS=true
+export PYTHON=$(which python2.7)
+export BUNDLE_GEMFILE=Gemfile.next259
+export RUBY_CFLAGS="-Wno-error=implicit-function-declaration"
+export RUBY_CFLAGS=-DUSE_FFI_CLOSURE_ALLOC
+
+# Path configs
+export PATH=~/.console-ninja/.bin:$PATH
+export PATH="/usr/local/bin:$PATH"
+export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
+export PATH="/opt/homebrew/opt/imagemagick@6/bin:$PATH"
+export PATH="/Users/bug/Dev/tweaks:$PATH"
+
+# Go
+export GOPATH=$HOME/go
+export GOROOT=/usr/local/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+# MySQL
+export LDFLAGS="-L/opt/homebrew/opt/mysql@8.0/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/mysql@8.0/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/mysql@8.0/lib/pkgconfig"
+
+# libffi
+export LDFLAGS="-L/opt/homebrew/opt/libffi/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libffi/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
+
+# Python/pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv &>/dev/null; then
+  eval "$(pyenv init - zsh --no-rehash)"
+  export PATH="$(pyenv root)/shims:${PATH}"
+fi
+
+# NVM - lazy loaded
+export NVM_DIR="$HOME/.nvm"
+# Defer NVM initialization until needed
+nvm() {
+  unset -f nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+  nvm "$@"
+}
+
+# Auto nvm use for .nvmrc files
+autoload -U add-zsh-hook
+load_nvmrc() {
+  if [[ -f ".nvmrc" && -r ".nvmrc" ]]; then
+    nvm use > /dev/null
+  fi
+}
+add-zsh-hook chpwd load_nvmrc
+
+# Architecture switching for Intel apps
+intel() {
+  arch -x86_64 $@
+}
+
+# pnpm
+export PNPM_HOME="/Users/bug/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# Theme init
+eval "$(oh-my-posh init zsh --config ~/Dev/tweaks/.bread.omp.json)"
+
+# Aliases
+alias c="clear&&clear"
+alias e=exit
+alias vim=nvim
+alias sql="brew services start mysql@8.0"
+alias cf="cd ~/Dev/companion-frontend/ && yarn dev -p 3001"
+alias cb="
+  cd ~/Dev/companion-backend/ && 
+  docker desktop start && 
+  while ! docker info &>/dev/null; do 
+    sleep 1; 
+  done &&
+  osascript -e 'tell application \"System Events\" to tell process \"Docker Desktop\" to keystroke \"w\" using command down' && 
+  docker-compose -f deploy/docker-compose.yml -f deploy/docker-compose.dev.yml --project-directory . up
+"
+alias vc="cd ~/Dev/vector/packages/companion/ && yarn storybook"
+alias mb="cd ~/Dev/myinterviewtrainer && sql && eval \"\$(rbenv init -)\" && rails s"
+alias mf="cd ~/Dev/myinterviewtrainer && yarn dev"
+alias av="source venv/bin/activate && echo \"\nUsing \$(which python). Enjoy!\n\""
+alias cv="python3 -m venv venv && av && pip install --upgrade pip"
+alias st="source ~/Dev/tweaks/shelltime"
+alias allow="sudo xattr -d com.apple.quarantine"
+
+# Welcome message
+~/Dev/tweaks/welcome
+
+# Run auto nvm for the initial directory
+load_nvmrc
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/bug/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

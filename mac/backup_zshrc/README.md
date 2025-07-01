@@ -14,6 +14,7 @@ This script automatically creates backups of your `.zshrc` file whenever it chan
 1. **Clone or download this repository** to your desired location.
 
 2. **Install dependencies**:
+
    - Ensure `fswatch` is installed:
 
      ```zsh
@@ -21,6 +22,7 @@ This script automatically creates backups of your `.zshrc` file whenever it chan
      ```
 
 3. **Configure the backup directory**:
+
    - Open the `backup_zshrc.sh` script in any text editor:
 
      ```zsh
@@ -36,6 +38,7 @@ This script automatically creates backups of your `.zshrc` file whenever it chan
    - Save and close the file.
 
 4. **Update the `plist` file path if needed**:
+
    - If you moved the `backup_zshrc.sh` script to a different location, update the path in the `com.user.backupzshrc.plist` file:
 
      ```xml
@@ -48,6 +51,7 @@ This script automatically creates backups of your `.zshrc` file whenever it chan
    - Save the updated `plist` file.
 
 5. **Set up the launch agent**:
+
    - Copy the `com.user.backupzshrc.plist` file to `~/Library/LaunchAgents/`:
 
      ```zsh
@@ -61,6 +65,7 @@ This script automatically creates backups of your `.zshrc` file whenever it chan
      ```
 
 6. **Verify the setup**:
+
    - Check if the launch agent is running:
 
      ```zsh
@@ -100,10 +105,6 @@ To stop the backup process and remove the setup:
 
 - Ensure that your `.zshrc` file exists at `$HOME/.zshrc`.
 - Modify the backup_zshrc.sh script if you want to customize the backup directory or the number of backups to keep.
-
-## Authors
-
-[Bug-Finderr](https://github.com/Bug-Finderr)
 
 ## License
 

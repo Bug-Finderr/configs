@@ -6,7 +6,7 @@
     <string>com.user.backupzshrc</string>
     <key>ProgramArguments</key>
     <array>
-	    <string>/Users/bug/Dev/tweaks/backup_zshrc/backup_zshrc.sh</string>
+	    <string>/Users/bug/Dev/tweaks/backup_zshrc/backup_zshrc</string>
     </array>
     <key>RunAtLoad</key>
     <true/>
