@@ -1,0 +1,198 @@
+{
+  "terminal.integrated.env.windows": {},
+  "workbench.colorTheme": "GitHub Dark Default",
+  "console-ninja.featureSet": "Community",
+  "editor.fontLigatures": true,
+  "workbench.settings.applyToAllProfiles": [],
+  "database-client.autoSync": true,
+  "terminal.integrated.env.osx": {},
+  "workbench.activityBar.location": "top",
+  "editor.minimap.enabled": false,
+  "git.autofetch": true,
+  "redhat.telemetry.enabled": false,
+  "workbench.startupEditor": "none",
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          // the following elements will be in italic
+          //   (=Fira Code iScript)
+          "comment",
+          "keyword.control.import.js", // import
+          "keyword.control.export.js", // export
+          "keyword.control.from.js", // from
+          // "constant", // String, Number, Boolean…, this, super
+          "storage.modifier", // static keyword
+          "storage.type.class", // class keyword
+          "storage.type.php", // typehints in methods keyword
+          "keyword.other.new.php", // new
+          "entity.other.attribute-name", // html attributes
+          "fenced_code.block.language.markdown" // markdown language modifier
+        ],
+        "settings": {
+          "fontStyle": "italic"
+        }
+      },
+      {
+        "scope": [
+          // the following elements will be displayed in bold
+          "entity.name.type.class" // class names
+        ],
+        "settings": {
+          "fontStyle": "bold"
+        }
+      },
+      {
+        "scope": [
+          // the following elements will be displayed in bold and italic
+          "entity.name.section.markdown" // markdown headlines
+        ],
+        "settings": {
+          "fontStyle": "italic bold"
+        }
+      },
+      {
+        "scope": [
+          // the following elements will be excluded from italics
+          //   (VSCode has some defaults for italics)
+          "invalid",
+          "keyword.operator",
+          "constant.numeric.css",
+          "keyword.other.unit.px.css",
+          "constant.numeric.decimal.js",
+          "constant.numeric.json",
+          "comment.block",
+          "entity.other.attribute-name.class.css"
+        ],
+        "settings": {
+          "fontStyle": ""
+        }
+      }
+    ]
+  },
+  "notebook.formatOnSave.enabled": true,
+  "editor.fontFamily": "Fira Code iScript, FiraCode Nerd Font Mono, Consolas, 'Courier New'",
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.fontLigatures.enabled": true,
+  "terminal.integrated.fontSize": 13,
+  "editor.wordWrap": "on",
+  "tailwind-fold.autoFold": false,
+  "editor.formatOnSave": true,
+  "editor.fontSize": 13,
+  "terminal.integrated.persistentSessionReviveProcess": "never",
+  "workbench.editorAssociations": {
+    "*.copilotmd": "vscode.markdown.preview.editor",
+    "{git,gitlens,git-graph}:/**/*.{md,csv,svg}": "default"
+  },
+  "editor.linkedEditing": true,
+  "python.createEnvironment.trigger": "off",
+  "notebook.output.minimalErrorRendering": true,
+  "notebook.output.scrolling": true,
+  "editor.accessibilitySupport": "off",
+  "files.exclude": {
+    "**/__pycache__": true
+  },
+  "code-runner.runInTerminal": true,
+  "terminal.integrated.allowedLinkSchemes": [
+    "file",
+    "http",
+    "https",
+    "mailto",
+    "vscode",
+    "vscode-insiders",
+    "docker-desktop"
+  ],
+  "terminal.integrated.env.linux": {},
+  "editor.formatOnPaste": true,
+  "postman.settings.dotenv-detection-notification-visibility": false,
+  "mcp": {
+    "servers": {
+      "postgres": {
+        "command": "docker",
+        "args": [
+          "run",
+          "-i",
+          "--rm",
+          "mcp/postgres",
+          "postgresql://{username}:{password}@{host}:{port}/{database}"
+        ]
+      },
+      "console-ninja": {
+        "command": "/bin/zsh",
+        "args": [
+          "-c",
+          "source $HOME/.nvm/nvm.sh && nvm exec 22 node ~/.console-ninja/mcp/"
+        ]
+      },
+      "context7": {
+        "command": "npx",
+        "args": ["-y", "@upstash/context7-mcp@latest"]
+      }
+    }
+  },
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "chat.editing.confirmEditRequestRetry": false,
+  "git.confirmSync": false,
+  "chat.editing.confirmEditRequestRemoval": false,
+  "figma.autocompleteBlocks": true,
+  "git.allowForcePush": true,
+  "git.autoStash": true,
+  "git.terminalGitEditor": true,
+  "github.copilot.chat.codesearch.enabled": true,
+  "github.copilot.chat.languageContext.fix.typescript.enabled": true,
+  "github.copilot.chat.languageContext.inline.typescript.enabled": true,
+  "github.copilot.chat.languageContext.typescript.enabled": true,
+  "chat.agent.maxRequests": 30,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "update.showReleaseNotes": false,
+  "gitlens.advanced.messages": {
+    "suppressCommitNotFoundWarning": true
+  },
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false,
+    "cpp": false
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "python.languageServer": "Default",
+  "python.analysis.typeCheckingMode": "standard",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "cph.general.menuChoices": "cpp java python",
+  "python.pyrefly.disableTypeErrors": true,
+  "sonarlint.rules": {
+    "typescript:S6606": {
+      "level": "off"
+    },
+    "typescript:S6759": {
+      "level": "off"
+    },
+    "typescript:S4043": {
+      "level": "off"
+    }
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "go.toolsManagement.autoUpdate": true,
+  "docker.extension.dockerEngineAvailabilityPrompt": false,
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-containers"
+  },
+  "[go.mod]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "github.copilot.chat.completionContext.typescript.mode": "on",
+  "docker.extension.enableComposeLanguageServer": false,
+  "github.copilot.chat.agent.thinkingTool": true
+}
