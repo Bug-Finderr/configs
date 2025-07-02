@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ZSHRC_PATH="$HOME/.zshrc"
-BACKUP_DIR="$HOME/Dev/tweaks/backup_zshrc/actual_backups"
-LOG_FILE="$HOME/Dev/tweaks/backup_zshrc/backup.log"
+BACKUP_DIR="$HOME/Dev/configs/mac/backup_zshrc/actual_backups"
+LOG_FILE="$HOME/Dev/configs/mac/backup_zshrc/backup.log"
 MAX_BACKUPS=10
 MAX_LOG_LINES=100
 
