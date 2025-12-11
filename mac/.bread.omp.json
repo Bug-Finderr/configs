@@ -31,7 +31,7 @@
           "template": "{{ if .Venv }}(venv) {{ end }}"
         },
         {
-          "properties": {
+          "options": {
             "folder_icon": "...",
             "home_icon": "~",
             "style": "agnoster_short",
@@ -90,7 +90,7 @@
           "style": "plain",
           "foreground": "p:mauve",
           "template": "{{ .CurrentDate | date \"15:04\" }} ",
-          "properties": {
+          "options": {
             "time_format": "15:04:05"
           }
         },
@@ -99,7 +99,7 @@
           "style": "plain",
           "foreground": "p:peach",
           "template": "{{ if gt .Ms 500 }}{{ .FormattedMs }}{{ end }} ",
-          "properties": {
+          "option": {
             "always_enabled": true,
             "style": "austin"
           }

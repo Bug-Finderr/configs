@@ -5,7 +5,7 @@ source "$(dirname "$0")/common"
 active_memory=$(vm_stat | grep 'Pages active' | awk '{print int($3*4096/1024/1024 + 0.5)}')
 total_memory=$(sysctl -n hw.memsize | awk '{print int($1/1024/1024)}')
 memory_load=$((active_memory * 100 / total_memory))
-cpu_usage=$(top -l 1 | grep -E "^CPU" | awk '{print $3+$5"%"}')
+cpu_usage="$(sysctl -n vm.loadavg | awk '{print $2}') (load)"
 battery_status=$(pmset -g batt | grep -o 'charging\|discharging\|charged')
 battery_percentage=$(pmset -g batt | grep -o '[0-9]\+%')
 remaining_time=$(pmset -g batt | grep -o '[0-9:]\+ remaining' | cut -d' ' -f1)
