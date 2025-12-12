@@ -18,9 +18,6 @@ alias allow="sudo xattr -d com.apple.quarantine"
 kp() { kill -9 $(lsof -ti :$1) }
 av() { source venv/bin/activate && echo "\nUsing $(which python3). Enjoy!\n" }
 
-# NVM lazy load with path cache
-source load_nvm
-
 # venv auto-activate if present, cleanup stale VIRTUAL_ENV
 if [ -d venv ]; then
   source venv/bin/activate
@@ -41,4 +38,3 @@ if [ -f "$GCLOUD_DIR/completion.zsh.inc" ]; then . "$GCLOUD_DIR/completion.zsh.i
 
 # bun completions
 [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
-

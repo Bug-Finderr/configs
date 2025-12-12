@@ -1,5 +1,6 @@
 export NVM_DIR="$HOME/.nvm"
 NVM_CACHE="$NVM_DIR/nvm_path_cache.zsh"
+typeset -U path PATH # Prevent duplicate PATH entries
 
 # Load cache or fallback to load+generate
 [ -f "$NVM_CACHE" ] && source "$NVM_CACHE" || {
