@@ -1,0 +1,18 @@
+export NVM_DIR="$HOME/.nvm"
+NVM_CACHE="$NVM_DIR/nvm_path_cache.zsh"
+
+# Load cache or fallback to load+generate
+[ -f "$NVM_CACHE" ] && source "$NVM_CACHE" || {
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  command -v node >/dev/null && echo "export PATH=\"$(dirname $(which node)):\$PATH\"" > "$NVM_CACHE"
+}
+
+# Lazy load wrapper
+nvm() {
+  unset -f nvm
+  command -v nvm_alias >/dev/null || [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  nvm "$@"
+  # Update cache on default alias change
+  [[ "$*" == *"alias default"* ]] && command -v node >/dev/null && \
+    echo "export PATH=\"$(dirname $(which node)):\$PATH\"" > "$NVM_CACHE"
+}

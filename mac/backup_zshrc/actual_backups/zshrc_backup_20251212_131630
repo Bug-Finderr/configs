@@ -1,0 +1,44 @@
+# Path prepends for faster startup
+export BUN_INSTALL="$HOME/.bun"
+export GCLOUD_DIR="$HOME/Downloads/google-cloud-sdk"
+export PATH="$BUN_INSTALL/bin:$HOME/.antigravity/antigravity/bin:$HOME/.console-ninja/.bin:$HOME/Dev/configs/mac:$HOME/.local/bin:$HOME/bin:$PATH"
+
+# Aliases
+alias c="clear&&clear"
+alias e="exit 0"
+alias q=e
+alias vim=nvim
+alias cat=bat
+alias python=python3
+alias cv="python3 -m venv venv && av && pip install --upgrade pip"
+alias st="shelltime"
+alias allow="sudo xattr -d com.apple.quarantine"
+
+# Functions
+kp() { kill -9 $(lsof -ti :$1) }
+av() { source venv/bin/activate && echo "\nUsing $(which python3). Enjoy!\n" }
+
+# NVM lazy load with path cache
+source load_nvm
+
+# venv auto-activate if present, cleanup stale VIRTUAL_ENV
+if [ -d venv ]; then
+  source venv/bin/activate
+elif [ -n "$VIRTUAL_ENV" ]; then
+  unset VIRTUAL_ENV
+fi
+
+if [[ $COLUMNS -ge 80 ]]; then
+    eval "$(oh-my-posh init zsh --config ~/Dev/configs/mac/.bread.omp.json)"    # Theme init
+    ~/Dev/configs/mac/welcome   # Welcome message
+fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$GCLOUD_DIR/path.zsh.inc" ]; then . "$GCLOUD_DIR/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "$GCLOUD_DIR/completion.zsh.inc" ]; then . "$GCLOUD_DIR/completion.zsh.inc"; fi
+
+# bun completions
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
+
