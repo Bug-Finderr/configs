@@ -1,0 +1,25 @@
+[user]
+	name = <Your Name>
+	email = <Your Email>
+[push]
+	autoSetupRemote = true
+[core]
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	dark = true
+	line-numbers = true
+	syntax-theme = TwoDark
+[merge]
+	conflictstyle = zdiff3
+[alias]
+	s = status -sb
+	lg = log --oneline --graph --decorate -20
+	d = diff
+	ds = diff --staged
+	co = checkout
+	br = branch
+	cm = commit -m
+	last = log -1 --stat
