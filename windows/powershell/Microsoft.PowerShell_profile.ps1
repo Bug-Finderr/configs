@@ -2,8 +2,11 @@ fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
 
 & ([ScriptBlock]::Create((oh-my-posh init pwsh --config jblab_2021 --print) -join "`n"))
 
-Set-PSReadLineOption -PredictionSource History
-Set-PSReadLineOption -PredictionViewStyle ListView
+$psReadLineOptions = (Get-Command Set-PSReadLineOption).Parameters
+
+if ($psReadLineOptions.ContainsKey('PredictionSource')) { Set-PSReadLineOption -PredictionSource History }
+if ($psReadLineOptions.ContainsKey('PredictionViewStyle')) { Set-PSReadLineOption -PredictionViewStyle ListView }
+
 Set-PSReadLineOption -HistoryNoDuplicates:$True
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
