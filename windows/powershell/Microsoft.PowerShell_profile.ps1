@@ -17,6 +17,7 @@ Set-Alias avenv .\.venv\Scripts\Activate.ps1
 # Alias functions
 function e { exit }
 function cx { c; codex --yolo @args }
+function ccx { & 'D:/Files/Dev/ccx/ccx.ps1' @args }
 
 function cvenv {
 	python -m venv .venv
