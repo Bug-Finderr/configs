@@ -1,0 +1,12 @@
+{
+    "animationType": "slideFade",
+    "showSpeedup": 400,
+    "hideSpeedup": 400,
+    "showDuration": 200,
+    "hideDuration": 200,
+    "frameRate": 60,
+    "unhideDelay": 1,
+    "hideDelay": 1,
+    "oldTaskbarOnWin11": 0,
+    "edgeDetection": 0
+}
