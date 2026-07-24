@@ -1,38 +1,23 @@
 # Windows Configs
 
-## PowerShell Profile
+- [`claude/`](./claude/) - Claude Code settings, status line, and toast
+  notifications.
+- [`powershell/`](./powershell/) - shared profile, GitHub account routing, and
+  scheduled maintenance.
+- `windhawk/` - exports for the taskbar, Start menu, notification center, and
+  window corners.
+- `yasb/` - YASB bar, styles, theme helpers, and audio controls.
 
-Both profile files source the same tracked profile:
+## YASB
 
-- PowerShell 7: `~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1`
-- Windows PowerShell 5.1: `~/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1`
-- Shared file: `windows/powershell/Microsoft.PowerShell_profile.ps1`
-
-The Documents profiles only dot-source the shared file, so edits stay in this repo.
-
-Put this in both Documents profile files:
-
-```powershell
-$ConfigProfile = "D:\Files\Dev\configs\windows\powershell\Microsoft.PowerShell_profile.ps1"
-
-if (Test-Path -LiteralPath $ConfigProfile) {
-	. $ConfigProfile
-}
-```
-
-## PSReadLine History Cleanup
-
-`Invoke-WindowsMaintenance.ps1` runs `Optimize-PSReadlineHistory` at most once every 7 days:
+Point YASB at the tracked directory:
 
 ```powershell
-Optimize-PSReadlineHistory -SkipRunningPowerShellCheck -TrimLeadingWhitespace -MinimumCommandLength 5
+[Environment]::SetEnvironmentVariable(
+    'YASB_CONFIG_HOME',
+    'D:\Files\Dev\configs\windows\yasb',
+    'User'
+)
 ```
 
-One-time admin registration:
-
-```powershell
-$script = 'D:\Files\Dev\configs\windows\Invoke-WindowsMaintenance.ps1'
-$action = New-ScheduledTaskAction -Execute (Get-Command pwsh).Source -Argument "-ExecutionPolicy Bypass -File `"$script`""
-$triggers = @(New-ScheduledTaskTrigger -Weekly -DaysOfWeek Sunday -At 9am; New-ScheduledTaskTrigger -AtStartup)
-Register-ScheduledTask -TaskName 'Configs Windows Maintenance' -Action $action -Trigger $triggers -User "$env:USERDOMAIN\$env:USERNAME" -RunLevel Highest -Force
-```
+![Current YASB bar](./yasb/preview.png)
