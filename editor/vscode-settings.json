@@ -92,7 +92,8 @@
 	"notebook.output.scrolling": true,
 	"editor.accessibilitySupport": "off",
 	"files.exclude": {
-		"**/__pycache__": true
+		"**/__pycache__": true,
+		"**/.git": false
 	},
 	"code-runner.runInTerminal": true,
 	"terminal.integrated.allowedLinkSchemes": [
@@ -136,6 +137,7 @@
 	"workbench.iconTheme": "material-icon-theme",
 	"python.languageServer": "Default",
 	"python.analysis.typeCheckingMode": "standard",
+	"python-envs.terminal.autoActivationType": "shellStartup",
 	"python.pyrefly.disableTypeErrors": true,
 	"sonarlint.rules": {
 		"typescript:S6606": {
@@ -169,5 +171,63 @@
 	"terminal.integrated.enableImages": true,
 	"explorer.confirmDelete": false,
 	"biome.lsp.bin": "C:\\Users\\Sudharsan\\AppData\\Local\\Programs\\Biome\\biome.exe",
-	"sonarlint.pathToNodeExecutable": "C:\\Users\\Sudharsan\\AppData\\Roaming\\fnm\\node-versions\\v26.1.0\\installation\\node.exe"
+	"sonarlint.pathToNodeExecutable": "C:\\Users\\Sudharsan\\AppData\\Roaming\\fnm\\node-versions\\v26.1.0\\installation\\node.exe",
+	"yaml.schemas": {
+		"file:///c%3A/Users/Sudharsan/.vscode/extensions/continue.continue-1.2.22-win32-x64/config-yaml-schema.json": [
+			".continue/**/*.yaml"
+		]
+	},
+	"chat.instructionsFilesLocations": {
+		".github/instructions": true,
+		".claude/rules": true,
+		"~/.copilot/instructions": true,
+		"~/.claude/rules": true,
+		"C:\\Users\\SUDHAR~1\\AppData\\Local\\Temp\\postman-folder-post-response.instructions.md": true,
+		"C:\\Users\\SUDHAR~1\\AppData\\Local\\Temp\\postman-folder-pre-request.instructions.md": true,
+		"C:\\Users\\SUDHAR~1\\AppData\\Local\\Temp\\postman-http-request-post-response.instructions.md": true,
+		"C:\\Users\\SUDHAR~1\\AppData\\Local\\Temp\\postman-http-request-pre-request.instructions.md": true,
+		"C:\\Users\\SUDHAR~1\\AppData\\Local\\Temp\\postman-collections-post-response.instructions.md": true,
+		"C:\\Users\\SUDHAR~1\\AppData\\Local\\Temp\\postman-collections-pre-request.instructions.md": true,
+		"C:\\Users\\Sudharsan\\AppData\\Local\\Temp\\postman-collections-post-response.instructions.md": true,
+		"C:\\Users\\Sudharsan\\AppData\\Local\\Temp\\postman-collections-pre-request.instructions.md": true,
+		"C:\\Users\\Sudharsan\\AppData\\Local\\Temp\\postman-folder-post-response.instructions.md": true,
+		"C:\\Users\\Sudharsan\\AppData\\Local\\Temp\\postman-folder-pre-request.instructions.md": true,
+		"C:\\Users\\Sudharsan\\AppData\\Local\\Temp\\postman-http-request-post-response.instructions.md": true,
+		"C:\\Users\\Sudharsan\\AppData\\Local\\Temp\\postman-http-request-pre-request.instructions.md": true
+	},
+	"terminal.integrated.mouseWheelScrollSensitivity": 3,
+	"security.workspace.trust.untrustedFiles": "open",
+	"remote.SSH.remotePlatform": {
+		"100.77.2.51": "linux"
+	},
+	"json.schemaDownload.trustedDomains": {
+		"https://aka.ms": true,
+		"https://biomejs.dev": true,
+		"https://developer.microsoft.com/json-schemas/": true,
+		"https://json-schema.org/": true,
+		"https://json.schemastore.org/": true,
+		"https://raw.githubusercontent.com": true,
+		"https://raw.githubusercontent.com/devcontainers/spec/": true,
+		"https://raw.githubusercontent.com/microsoft/vscode/": true,
+		"https://schemastore.azurewebsites.net/": true,
+		"https://www.schemastore.org/": true
+	},
+	"[json]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"githubPullRequests.pullBranch": "never",
+	"yaml.disableSchemaDetection": [
+		"**/.github/workflows/*.yml",
+		"**/.github/workflows/*.yaml",
+		"**/.gitea/workflows/*.yml",
+		"**/.gitea/workflows/*.yaml",
+		"**/.forgejo/workflows/*.yml",
+		"**/.forgejo/workflows/*.yaml"
+	],
+	"gitlens.ai.model": "vscode",
+	"gitlens.ai.vscode.model": "copilotcli:",
+	"js/ts.experimental.useTsgo": true
 }
