@@ -20,6 +20,7 @@ and subagent models. `settings.json` invokes the tracked script directly.
 
 Each toast shows its full working directory as bounded attribution text, so long
 paths wrap or clip inside the notification rather than expanding it.
+Headless CLI and Agent SDK sessions do not produce toasts.
 
 Manual test:
 

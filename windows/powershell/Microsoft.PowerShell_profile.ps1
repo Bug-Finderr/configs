@@ -4,6 +4,7 @@ fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
 
 $env:VISUAL = 'zed --wait'
 $env:EDITOR = $env:VISUAL
+$env:CLAUDE_CODE_USE_POWERSHELL_TOOL=1
 
 $psReadLineOptions = (Get-Command Set-PSReadLineOption).Parameters
 $canUsePrediction = [Environment]::UserInteractive -and -not [Console]::IsOutputRedirected

@@ -263,7 +263,7 @@ widgets:
     type: "yasb.traffic.TrafficWidget"
     options:
       label: "<span>\ueab4</span>{download_speed} <span>\ueab7</span>{upload_speed}"
-      label_alt: "Down {download_speed} | Up {upload_speed}"
+      label_alt: "<span>\ueab4</span>{download_speed} <span>\ueab7</span>{upload_speed}"
       interface: "auto"
       update_interval: 1000
       hide_if_offline: false
@@ -286,7 +286,7 @@ widgets:
       callbacks:
         on_left: "toggle_menu"
         on_middle: "do_nothing"
-        on_right: "toggle_label"
+        on_right: "do_nothing"
   cpu:
     type: "yasb.cpu.CpuWidget"
     options:

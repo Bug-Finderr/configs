@@ -1,5 +1,7 @@
 $ErrorActionPreference = 'Stop'
 
+if ($env:CLAUDE_CODE_ENTRYPOINT -like 'sdk-*') { exit 0 }
+
 try {
     $raw = (New-Object System.IO.StreamReader(
         [Console]::OpenStandardInput(),
