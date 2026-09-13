@@ -1,0 +1,27 @@
+/* Right pill editor */
+.yasb-bar .system-status {background-color:rgba(var(--background-rgb),0.80);border-radius:8px;padding:0 4px;}
+.yasb-bar .system-status .widget.traffic-widget {padding:0 5px;min-width:0px;max-width:16777215px;}
+.yasb-bar .system-status .widget.traffic-widget .label {font-size:11px;font-weight:600;}
+.yasb-bar .system-status .widget.traffic-widget .icon {font-size:12px;min-width:12px;max-width:16777215px;min-height:20px;max-height:20px;margin:0;padding:0 4px 0 0;qproperty-alignment:AlignCenter;}
+.yasb-bar .system-status .widget.cpu-widget {padding:0 5px;min-width:0px;max-width:16777215px;}
+.yasb-bar .system-status .widget.cpu-widget .label {font-size:11px;font-weight:600;}
+.yasb-bar .system-status .widget.cpu-widget .icon {font-size:13px;min-width:13px;max-width:16777215px;min-height:20px;max-height:20px;margin:0;padding:0 4px 0 0;qproperty-alignment:AlignCenter;}
+.yasb-bar .system-status .widget.memory-widget {padding:0 5px;min-width:0px;max-width:16777215px;}
+.yasb-bar .system-status .widget.memory-widget .label {font-size:11px;font-weight:600;}
+.yasb-bar .system-status .widget.memory-widget .icon {font-size:13px;min-width:13px;max-width:16777215px;min-height:20px;max-height:20px;margin:0;padding:0 4px 0 0;qproperty-alignment:AlignCenter;}
+.yasb-bar .system-status .widget.wallpapers-widget {padding:0 5px;min-width:0px;max-width:16777215px;}
+.yasb-bar .system-status .widget.wallpapers-widget .label {font-size:11px;font-weight:600;}
+.yasb-bar .system-status .widget.wallpapers-widget .icon {font-size:13px;min-width:13px;max-width:16777215px;min-height:20px;max-height:20px;margin:0;padding:0 0px 0 0;qproperty-alignment:AlignCenter;}
+.yasb-bar .system-status .widget.taskbar-toggle {padding:0 5px;min-width:0px;max-width:16777215px;}
+.yasb-bar .system-status .widget.taskbar-toggle .label {font-size:11px;font-weight:600;}
+.yasb-bar .system-status .widget.taskbar-toggle .icon {font-size:13px;min-width:13px;max-width:16777215px;min-height:20px;max-height:20px;margin:0;padding:0 0px 0 0;qproperty-alignment:AlignCenter;}
+.yasb-bar .system-status .widget.brightness-widget {padding:0 5px;min-width:0px;max-width:16777215px;}
+.yasb-bar .system-status .widget.brightness-widget .label {font-size:11px;font-weight:600;}
+.yasb-bar .system-status .widget.brightness-widget .icon {font-size:14px;min-width:14px;max-width:16777215px;min-height:20px;max-height:20px;margin:0;padding:0 0px 0 0;qproperty-alignment:AlignCenter;}
+.yasb-bar .system-status .widget.brightness-widget .icon {font-size:1px;max-width:14px;color:transparent;background-image:url('assets/right-icon-83129E13167E25B8.png');background-position:left center;background-repeat:no-repeat;}
+.yasb-bar .system-status .widget.volume-widget {padding:0 5px;min-width:0px;max-width:16777215px;}
+.yasb-bar .system-status .widget.volume-widget .label {font-size:11px;font-weight:600;}
+.yasb-bar .system-status .widget.volume-widget .icon {font-size:13px;min-width:13px;max-width:16777215px;min-height:20px;max-height:20px;margin:0;padding:0 0px 0 0;qproperty-alignment:AlignCenter;}
+.yasb-bar .system-status .widget.battery-widget {padding:0 5px;min-width:0px;max-width:16777215px;}
+.yasb-bar .system-status .widget.battery-widget .label {font-size:11px;font-weight:600;}
+.yasb-bar .system-status .widget.battery-widget .icon {font-size:12px;min-width:12px;max-width:16777215px;min-height:20px;max-height:20px;margin:0;padding:0 2px 0 0;qproperty-alignment:AlignCenter;}

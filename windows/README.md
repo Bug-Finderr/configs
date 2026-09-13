@@ -4,9 +4,9 @@
   notifications.
 - [`powershell/`](./powershell/) - shared profile, GitHub account routing, and
   scheduled maintenance.
-- `windhawk/` - exports for the taskbar, Start menu, notification center, and
+- [`windhawk/`](./windhawk/) - exports for the taskbar, Start menu, notification center, and
   window corners.
-- `yasb/` - YASB bar, styles, theme helpers, and audio controls.
+- [`yasb/`](./yasb/) - YASB bar, styles, theme helpers, and audio controls.
 
 ## YASB
 

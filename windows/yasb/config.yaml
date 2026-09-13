@@ -6,8 +6,10 @@ watch_stylesheet: true
 watch_config: true
 debug: false
 update_check: true
+system_colors: true
 bars:
   primary-bar:
+    style: bar
     enabled: true
     screens:
     - '*'
@@ -36,11 +38,13 @@ bars:
       left:
       - power_menu
       - windows_desktop
+      - claude_usage
+      - codex_usage
       - active_window
       center:
       - clock
       right:
-      - cava
+      - audio_visualizer
       - systray
       - system_status
 widgets:
@@ -160,29 +164,85 @@ widgets:
         on_left: "activate_workspace"
         on_middle: "move_window_here"
         on_right: "toggle_context_menu"
-  cava:
-    type: "yasb.cava.CavaWidget"
+  audio_visualizer:
+    type: "yasb.audio_visualizer.AudioVisualizerWidget"
     options:
-      bar_height: 12
-      waveform: 0
-      waves: 0
-      monstercat: 0
-      sensitivity: 100
+      style: "waves"
+      height: 12
+      smoothness: 65
+      sensitivity: 50
+      auto_gain: true
       edge_fade: 1
-      min_bar_height: 0
-      gradient: 0
-      foreground: "#C9CEDA"
-      bars_number: 14
-      bar_spacing: 2
-      bar_width: 3
-      bar_type: "waves"
+      waves:
+        width: 68
+      bars:
+        count: 14
+        width: 3
+        gap: 2
+      dots:
+        count: 14
+        size: 2
+        gap: 3
       framerate: 30
-      sleep_timer: 1
-      hide_empty: true
+      hide_idle: true
+      hide_idle_after: 1000
       callbacks:
         on_left: "do_nothing"
         on_middle: "do_nothing"
-        on_right: "reload_cava"
+        on_right: "do_nothing"
+  claude_usage:
+    type: "yasb.claude_usage.ClaudeUsageWidget"
+    options:
+      label: "<span>\u2733</span> {five_hour}%"
+      label_alt: "<span>\u2733</span> {five_hour}%"
+      token_history:
+        enabled: true
+        default_period: "today"
+        show_graph: true
+        show_models: true
+      status:
+        enabled: true
+        show_in_menu: true
+      menu:
+        blur: false
+        alignment: "left"
+      callbacks:
+        on_left: "toggle_menu"
+        on_middle: "refresh"
+        on_right: "do_nothing"
+  codex_usage:
+    type: "yasb.codex_usage.CodexUsageWidget"
+    options:
+      label: "<span>>_</span> {primary_remaining}%"
+      label_alt: "<span>>_</span> {primary_remaining}%"
+      codex_path: "C:/Users/Sudharsan/AppData/Local/Programs/OpenAI/Codex/bin/codex.exe"
+      show_token_usage: true
+      progress_bar:
+        enabled: false
+      menu:
+        blur: false
+        alignment: "left"
+        show_overview: true
+        show_models: true
+        show_activity: true
+        show_resets: true
+      callbacks:
+        on_left: "toggle_menu"
+        on_middle: "refresh"
+        on_right: "do_nothing"
+  brightness:
+    type: "yasb.brightness.BrightnessWidget"
+    options:
+      label: "<span>\uf185</span>"
+      label_alt: "<span>\uf185</span>"
+      scroll_step: 5
+      brightness_menu:
+        blur: false
+        alignment: "right"
+      callbacks:
+        on_left: "toggle_brightness_menu"
+        on_middle: 'exec pwsh.exe -NoProfile -STA -WindowStyle Hidden -File D:\Files\Dev\configs\windows\yasb\right-pill-panel.ps1'
+        on_right: "do_nothing"
   systray:
     type: "yasb.systray.SystrayWidget"
     options:
@@ -221,26 +281,16 @@ widgets:
       change_automatically: false # Automatically change wallpaper
       update_interval: 60 # If change_automatically is true, update interval in seconds
       run_after:
-        - 'pwsh.exe -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File D:\Files\Dev\configs\windows\yasb\wallpaper-accent.ps1 -ImagePath {image}'
+        - 'pwsh.exe -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File D:\Files\Dev\configs\windows\yasb\wallpaper-accent.ps1 -ImagePath {image} -SyncDesktops'
       engine:
         enabled: true
         animation: "circle" # circle/slide_top/diamond/split
       gallery:
-        enabled: true
-        blur: false
+        type: "slide"
         image_width: 220
-        image_per_page: 6
-        gallery_columns: 0 # 0 = auto, matches image_per_page for a single row
-        horizontal_position: "center" # left/center/right placement on screen
-        vertical_position: "center" # top/center/bottom placement
-        position_offset: 0 # minimum gap (px) from screen edges - see below for advanced options
-        respect_work_area: true # clamp to OS work area (avoids Windows taskbar)
-        show_buttons: false
         orientation: "portrait"
-        image_spacing: 8
-        lazy_load: true
-        lazy_load_fadein: 400
         image_corner_radius: 8
+        accent_color: "auto"
       callbacks:
         on_left: "toggle_gallery"
         on_middle: 'exec pwsh.exe -NoProfile -STA -WindowStyle Hidden -ExecutionPolicy Bypass -File D:\Files\Dev\configs\windows\yasb\theme-panel.ps1'
@@ -255,6 +305,7 @@ widgets:
         - memory
         - wallpapers
         - taskbar_toggle
+        - brightness
         - volume
         - battery
       collapse_options:
@@ -262,8 +313,8 @@ widgets:
   traffic:
     type: "yasb.traffic.TrafficWidget"
     options:
-      label: "<span>\ueab4</span>{download_speed} <span>\ueab7</span>{upload_speed}"
-      label_alt: "<span>\ueab4</span>{download_speed} <span>\ueab7</span>{upload_speed}"
+      label: "<span>\uf063</span> {download_speed}"
+      label_alt: "<span>\uf063</span> {download_speed}"
       interface: "auto"
       update_interval: 1000
       hide_if_offline: false
@@ -291,12 +342,12 @@ widgets:
     type: "yasb.cpu.CpuWidget"
     options:
       label: "<span>\uf4bc</span> {info[percent][total]}%"
-      label_alt: "<span>\uf437</span> {info[freq][current]} MHz"
+      label_alt: "<span>\uf4bc</span> {info[percent][total]}%"
       update_interval: 2000
       hide_decimal: true
       callbacks:
-        on_left: "toggle_label"
-        on_right: "toggle_menu"
+        on_left: "toggle_menu"
+        on_right: "do_nothing"
       menu:
         enabled: true
         blur: false
@@ -311,12 +362,12 @@ widgets:
     type: "yasb.memory.MemoryWidget"
     options:
       label: "<span>\uefc5</span> {virtual_mem_percent}%"
-      label_alt: "RAM {virtual_mem_used}/{virtual_mem_total}"
+      label_alt: "<span>\uefc5</span> {virtual_mem_percent}%"
       update_interval: 5000
       hide_decimal: true
       callbacks:
-        on_left: "toggle_label"
-        on_right: "toggle_menu"
+        on_left: "toggle_menu"
+        on_right: "do_nothing"
       menu:
         enabled: true
         blur: false

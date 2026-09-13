@@ -1,0 +1,87 @@
+{
+  "opacity": 80,
+  "radius": 8,
+  "padding": 4,
+  "items": [
+    {
+      "id": "traffic-widget",
+      "glyph": "",
+      "iconSize": 12,
+      "textSize": 11,
+      "width": 0,
+      "padding": 5,
+      "gap": 4,
+      "weight": 600
+    },
+    {
+      "id": "cpu-widget",
+      "glyph": "",
+      "iconSize": 13,
+      "textSize": 11,
+      "width": 0,
+      "padding": 5,
+      "gap": 4,
+      "weight": 600
+    },
+    {
+      "id": "memory-widget",
+      "glyph": "",
+      "iconSize": 13,
+      "textSize": 11,
+      "width": 0,
+      "padding": 5,
+      "gap": 4,
+      "weight": 600
+    },
+    {
+      "id": "wallpapers-widget",
+      "glyph": "",
+      "iconSize": 13,
+      "textSize": 11,
+      "width": 0,
+      "padding": 5,
+      "gap": 0,
+      "weight": 600
+    },
+    {
+      "id": "taskbar-toggle",
+      "glyph": "",
+      "iconSize": 13,
+      "textSize": 11,
+      "width": 0,
+      "padding": 5,
+      "gap": 0,
+      "weight": 600
+    },
+    {
+      "id": "brightness-widget",
+      "glyph": "",
+      "iconSize": 14,
+      "textSize": 11,
+      "width": 0,
+      "padding": 5,
+      "gap": 0,
+      "weight": 600
+    },
+    {
+      "id": "volume-widget",
+      "glyph": "",
+      "iconSize": 13,
+      "textSize": 11,
+      "width": 0,
+      "padding": 5,
+      "gap": 0,
+      "weight": 600
+    },
+    {
+      "id": "battery-widget",
+      "glyph": "",
+      "iconSize": 12,
+      "textSize": 11,
+      "width": 0,
+      "padding": 5,
+      "gap": 2,
+      "weight": 600
+    }
+  ]
+}

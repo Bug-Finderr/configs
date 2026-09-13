@@ -1,6 +1,7 @@
 /* YASB palette: Cold Slate. Managed by theme-panel.ps1. */
 :root {
 	--background: #15181E;
+	--background-rgb: 21, 24, 30;
 	--background2: #1F242D;
 	--bar-surface: rgba(21, 24, 30, 0.80);
 	--bar-surface2: rgba(31, 36, 45, 0.82);
@@ -12,5 +13,5 @@
 	--accentText: #FFFFFF;
 	--hover: #1F242D;
 	--yasb-icon-fg: #DDE2EA;
-	--yasb-accent: #C72C64;
+	--theme-accent: #C72C64;
 }

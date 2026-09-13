@@ -5,6 +5,7 @@ param(
     [string]$BackgroundOverride,
     [string]$TextOverride,
     [switch]$Preview,
+    [switch]$SyncDesktops,
     [switch]$Force,
     [switch]$NoReload
 )
@@ -189,6 +190,11 @@ if ($Preview) {
     exit 0
 }
 
+if ($SyncDesktops) {
+    Import-Module (Join-Path $PSScriptRoot 'vendor\VirtualDesktop\VirtualDesktop.psd1') -DisableNameChecking
+    Set-AllDesktopWallpapers -Path ([IO.Path]::GetFullPath($ImagePath)) -ErrorAction Stop
+}
+
 if (-not $Force) {
     if (-not (Test-Path -LiteralPath $SettingsPath -PathType Leaf)) { exit 0 }
     $settings = [System.IO.File]::ReadAllText($SettingsPath) | ConvertFrom-Json
@@ -196,7 +202,7 @@ if (-not $Force) {
 }
 
 $updated = $palette
-foreach ($token in @("accent", "yasb-accent")) {
+foreach ($token in @("accent", "theme-accent")) {
     $pattern = "--${token}:\s*#[0-9A-Fa-f]{6}\s*;"
     if ($updated -notmatch $pattern) { throw "Palette is missing --$token." }
     $updated = [regex]::Replace($updated, $pattern, "--${token}: $($result.Accent);", 1)

@@ -1,7 +1,7 @@
 param(
     [string]$PalettePath = (Join-Path $PSScriptRoot "palette.css"),
     [string]$ApplyPreset,
-    [ValidateSet("preset", "wallpaper")]
+    [ValidateSet("preset", "wallpaper", "system")]
     [string]$AccentSource,
     [switch]$RestoreBackup,
     [switch]$NoReload,
@@ -95,6 +95,14 @@ function Get-EffectivePalette {
 
     $effective = [ordered]@{}
     foreach ($key in $Palette.Keys) { $effective[$key] = $Palette[$key] }
+    if ($Source -eq "system") {
+        $colors = [IO.File]::ReadAllText((Join-Path $PSScriptRoot "yasb_colors.css"))
+        if ($colors -notmatch '--yasb-accent:\s*rgb\((\d+),\s*(\d+),\s*(\d+)\)\s*;') { throw "Windows accent color is unavailable." }
+        $effective.Accent = "#{0:X2}{1:X2}{2:X2}" -f [int]$matches[1], [int]$matches[2], [int]$matches[3]
+        $effective.AccentText = "#FFFFFF"
+        $effective.SystemAccent = $true
+        return $effective
+    }
     if ($Source -ne "wallpaper") { return $effective }
     if (-not (Test-Path -LiteralPath $accentScriptPath -PathType Leaf)) {
         throw "Wallpaper accent script does not exist: $accentScriptPath"
@@ -123,10 +131,13 @@ function ConvertTo-PaletteCss {
 
     $barSurface = ConvertTo-RgbaColor -Color $Palette.Background -Alpha "0.80"
     $barSurface2 = ConvertTo-RgbaColor -Color $Palette.Background2 -Alpha "0.82"
+    $backgroundColor = [Windows.Media.ColorConverter]::ConvertFromString($Palette.Background)
+    $accentBinding = if ($Palette.Contains("SystemAccent") -and $Palette.SystemAccent) { "var(--yasb-accent)" } else { $Palette.Accent }
     return @"
 /* YASB palette: $Name. Managed by theme-panel.ps1. */
 :root {
 	--background: $($Palette.Background);
+	--background-rgb: $($backgroundColor.R), $($backgroundColor.G), $($backgroundColor.B);
 	--background2: $($Palette.Background2);
 	--bar-surface: $barSurface;
 	--bar-surface2: $barSurface2;
@@ -138,7 +149,7 @@ function ConvertTo-PaletteCss {
 	--accentText: $($Palette.AccentText);
 	--hover: $($Palette.Background2);
 	--yasb-icon-fg: $($Palette.Text);
-	--yasb-accent: $($Palette.Accent);
+	--theme-accent: $accentBinding;
 }
 "@
 }
@@ -258,7 +269,7 @@ $xaml = @'
                 </Border>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <Border x:Name="AudioPill" Height="30" CornerRadius="7" Background="#25282A" Padding="11,0" Margin="0,0,7,0">
-                        <TextBlock x:Name="AudioText" Text="CAVA" VerticalAlignment="Center" Foreground="#F0F3F4"/>
+                        <TextBlock x:Name="AudioText" Text="Audio" VerticalAlignment="Center" Foreground="#F0F3F4"/>
                     </Border>
                     <Border x:Name="ToolsPill" Height="30" CornerRadius="7" Background="#25282A" Padding="12,0">
                         <TextBlock x:Name="ToolsText" Text="•••  ↓12.4 ↑1.2  CPU RAM" VerticalAlignment="Center" Foreground="#F0F3F4"/>
@@ -275,8 +286,11 @@ $xaml = @'
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel>
-                    <CheckBox x:Name="WallpaperAccentToggle" Content="Derive accent from the active wallpaper"
-                              Foreground="#F0F3F4" FontWeight="SemiBold" Cursor="Hand"/>
+                    <ComboBox x:Name="AccentSourceChoice" Width="230" HorizontalAlignment="Left" SelectedIndex="0">
+                        <ComboBoxItem Content="Preset accent" Tag="preset"/>
+                        <ComboBoxItem Content="Wallpaper accent" Tag="wallpaper"/>
+                        <ComboBoxItem Content="Windows accent" Tag="system"/>
+                    </ComboBox>
                     <TextBlock x:Name="AccentSourceHint" Text="The base palette stays intact; only active and selected states change."
                                Foreground="#A8B0B4" FontSize="12" Margin="20,4,0,0"/>
                 </StackPanel>
@@ -380,7 +394,7 @@ $audioText = $window.FindName("AudioText")
 $toolsText = $window.FindName("ToolsText")
 $audioPill = $window.FindName("AudioPill")
 $toolsPill = $window.FindName("ToolsPill")
-$wallpaperAccentToggle = $window.FindName("WallpaperAccentToggle")
+$accentSourceChoice = $window.FindName("AccentSourceChoice")
 $accentSourceHint = $window.FindName("AccentSourceHint")
 $accentSwatch = $window.FindName("AccentSwatch")
 $accentValue = $window.FindName("AccentValue")
@@ -389,12 +403,8 @@ $applyButton = $window.FindName("ApplyButton")
 $restoreButton = $window.FindName("RestoreButton")
 $communityButton = $window.FindName("CommunityButton")
 $closeButton = $window.FindName("CloseButton")
-$wallpaperAccentToggle.IsChecked = $currentSettings.accentSource -eq "wallpaper"
-$accentSourceHint.Text = if ($wallpaperAccentToggle.IsChecked) {
-    "The base palette stays intact; active and selected states follow the wallpaper."
-} else {
-    "The selected preset supplies both the base palette and its accent."
-}
+$accentSourceChoice.SelectedIndex = @("preset", "wallpaper", "system").IndexOf($currentSettings.accentSource)
+$accentSourceHint.Text = "Accent source"
 
 function Show-Preview {
     param([System.Collections.IDictionary]$Palette)
@@ -485,7 +495,7 @@ foreach ($entry in $presets.GetEnumerator()) {
             $item.BorderBrush = Get-Brush "#383D40"
             $item.BorderThickness = [System.Windows.Thickness]::new(1)
         }
-        $source = if ($script:wallpaperAccentToggle.IsChecked) { "wallpaper" } else { "preset" }
+        $source = [string]$script:accentSourceChoice.SelectedItem.Tag
         $effective = Get-EffectivePalette -Palette $script:presets[$script:selectedName] -Source $source
         $sender.BorderBrush = Get-Brush $effective.Accent
         $sender.BorderThickness = [System.Windows.Thickness]::new(2)
@@ -498,23 +508,13 @@ foreach ($entry in $presets.GetEnumerator()) {
     $paletteGrid.Children.Add($card) | Out-Null
 }
 
-$wallpaperAccentToggle.Add_Checked({
-    $script:accentSourceHint.Text = "The base palette stays intact; active and selected states follow the wallpaper."
+$accentSourceChoice.Add_SelectionChanged({
+    $source = [string]$script:accentSourceChoice.SelectedItem.Tag
     if ($script:selectedName) {
-        Show-Preview (Get-EffectivePalette -Palette $script:presets[$script:selectedName] -Source "wallpaper")
-        $script:statusText.Text = "Wallpaper accent previewed. Apply to persist it."
+        Show-Preview (Get-EffectivePalette -Palette $script:presets[$script:selectedName] -Source $source)
+        $script:statusText.Text = "$source accent previewed."
     } else {
-        $script:statusText.Text = "Select a base palette before applying the wallpaper accent."
-    }
-})
-
-$wallpaperAccentToggle.Add_Unchecked({
-    $script:accentSourceHint.Text = "The selected preset supplies both the base palette and its accent."
-    if ($script:selectedName) {
-        Show-Preview $script:presets[$script:selectedName]
-        $script:statusText.Text = "Preset accent previewed. Apply to persist it."
-    } else {
-        $script:statusText.Text = "Select a base palette before changing the accent source."
+        $script:statusText.Text = "Select a base palette."
     }
 })
 
@@ -525,7 +525,7 @@ $applyButton.Add_Click({
         $script:backupCreated = $true
         $script:restoreButton.IsEnabled = $true
     }
-    $source = if ($script:wallpaperAccentToggle.IsChecked) { "wallpaper" } else { "preset" }
+    $source = [string]$script:accentSourceChoice.SelectedItem.Tag
     $effective = Get-EffectivePalette -Palette $script:presets[$script:selectedName] -Source $source
     Write-Palette (ConvertTo-PaletteCss -Name $script:selectedName -Palette $effective)
     Write-ThemeSettings -PaletteName $script:selectedName -Source $source
@@ -538,7 +538,7 @@ $restoreButton.Add_Click({
     if ($null -ne $script:launchSettings) {
         [System.IO.File]::WriteAllText($script:settingsPath, $script:launchSettings, [System.Text.UTF8Encoding]::new($false))
         $restoredSettings = $script:launchSettings | ConvertFrom-Json
-        $script:wallpaperAccentToggle.IsChecked = $restoredSettings.accentSource -eq "wallpaper"
+        $script:accentSourceChoice.SelectedIndex = @("preset", "wallpaper", "system").IndexOf($restoredSettings.accentSource)
     }
     $script:statusText.Text = "Launch palette restored."
     $script:restoreButton.IsEnabled = $false
