@@ -84,15 +84,17 @@
     "security-guidance@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {},
+  "feedbackDrafts": "notify",
   "effortLevel": "xhigh",
   "ultracode": true,
   "autoUpdatesChannel": "latest",
+  "timeFormat": "24-hour",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
   "editorMode": "normal",
   "preferredNotifChannel": "auto",
   "autoCompactEnabled": true,
-  "switchModelsOnFlag": false,
+  "switchModelsOnFlag": true,
   "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true
 }

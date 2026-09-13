@@ -23,6 +23,9 @@
     "provider": "copilot"
   },
   "agent": {
+    "sandbox_permissions": {
+      "allow_unsandboxed": true
+    },
     "thinking_display": "preview",
     "show_turn_stats": true,
     "play_sound_when_agent_done": "always",
@@ -36,7 +39,7 @@
     },
     "default_model": {
       "provider": "anthropic",
-      "model": "claude-opus-5",
+      "model": "claude-fable-5",
       "enable_thinking": true,
       "effort": "high"
     },

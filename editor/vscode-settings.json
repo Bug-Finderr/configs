@@ -227,7 +227,5 @@
 		"**/.forgejo/workflows/*.yml",
 		"**/.forgejo/workflows/*.yaml"
 	],
-	"gitlens.ai.model": "vscode",
-	"gitlens.ai.vscode.model": "copilotcli:",
 	"js/ts.experimental.useTsgo": true
 }
