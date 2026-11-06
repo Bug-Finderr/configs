@@ -1,5 +1,6 @@
 # Windows Configs
 
+- [`catfetch/`](./catfetch/) - cat image and system details for Windows Terminal.
 - [`claude/`](./claude/) - Claude Code settings, status line, and toast
   notifications.
 - [`powershell/`](./powershell/) - shared profile, GitHub account routing, and
