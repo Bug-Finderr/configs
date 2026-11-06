@@ -193,8 +193,8 @@ widgets:
   claude_usage:
     type: "yasb.claude_usage.ClaudeUsageWidget"
     options:
-      label: "<span>\u2733</span> {five_hour}%"
-      label_alt: "<span>\u2733</span> {five_hour}%"
+      label: "<span>\u2733</span> {seven_day}%"
+      label_alt: "<span>\u2733</span> {seven_day}%"
       token_history:
         enabled: true
         default_period: "today"
@@ -213,8 +213,8 @@ widgets:
   codex_usage:
     type: "yasb.codex_usage.CodexUsageWidget"
     options:
-      label: "<span>>_</span> {primary_remaining}%"
-      label_alt: "<span>>_</span> {primary_remaining}%"
+      label: "<span>>_</span> {primary_used}%"
+      label_alt: "<span>>_</span> {primary_used}%"
       codex_path: "C:/Users/Sudharsan/AppData/Local/Programs/OpenAI/Codex/bin/codex.exe"
       show_token_usage: true
       progress_bar:

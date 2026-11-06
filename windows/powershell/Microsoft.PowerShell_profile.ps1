@@ -2,10 +2,10 @@ fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
 
 & ([ScriptBlock]::Create((oh-my-posh init pwsh --config jblab_2021 --print) -join "`n"))
 
-$env:VISUAL = 'zed --wait'
+$env:VISUAL = 'code --wait'
 $env:EDITOR = $env:VISUAL
-$env:CLAUDE_CODE_USE_POWERSHELL_TOOL=1
 
+$env:VSCODE_A11Y_MODE = $null
 $psReadLineOptions = (Get-Command Set-PSReadLineOption).Parameters
 $canUsePrediction = [Environment]::UserInteractive -and -not [Console]::IsOutputRedirected
 

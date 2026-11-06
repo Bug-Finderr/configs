@@ -1,8 +1,13 @@
 {
   "cleanupPeriodDays": 99999,
-  "permissions": {
-    "defaultMode": "dontAsk"
+  "env": {
+    "NODE_OPTIONS": "--no-experimental-webstorage"
   },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "model": "opus",
   "hooks": {
     "Notification": [
       {
@@ -66,6 +71,9 @@
       }
     ]
   },
+  "worktree": {
+    "baseRef": "fresh"
+  },
   "statusLine": {
     "type": "command",
     "command": "powershell -NoProfile -ExecutionPolicy Bypass -File D:/Files/Dev/configs/windows/claude/statusline.ps1",
@@ -77,24 +85,50 @@
   },
   "enabledPlugins": {
     "superpowers@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true,
-    "playwright@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
-    "chrome-devtools-mcp@claude-plugins-official": true,
-    "security-guidance@claude-plugins-official": true
+    "security-guidance@claude-plugins-official": true,
+    "cc-plugin-you-should-know@builtin": true,
+    "typescript-native-lsp@anthropic-plugin-directory": true,
+    "context7@anthropic-plugin-directory": true
   },
   "extraKnownMarketplaces": {},
-  "feedbackDrafts": "notify",
-  "effortLevel": "xhigh",
+  "feedbackDrafts": "off",
+  "effortLevel": "high",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
   "ultracode": true,
+  "advisorModel": "opus",
+  "pluginConfigs": {
+    "agents-md@builtin": {
+      "options": {
+        "instructionFiles": "claude-md-or-agents-md"
+      }
+    },
+    "cc-plugin-agents-md@builtin": {
+      "options": {
+        "instructionFiles": "claude-md-and-agents-md"
+      }
+    }
+  },
   "autoUpdatesChannel": "latest",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
   "timeFormat": "24-hour",
   "skipDangerousModePermissionPrompt": true,
+  "skipWorkflowUsageWarning": true,
   "theme": "dark",
   "editorMode": "normal",
   "preferredNotifChannel": "auto",
   "autoCompactEnabled": true,
+  "idleCompaction": true,
   "switchModelsOnFlag": true,
+  "fileCheckpointingEnabled": true,
   "inputNeededNotifEnabled": true,
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "voiceEnabled": true
 }

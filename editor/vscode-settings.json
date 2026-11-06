@@ -90,7 +90,7 @@
 	"editor.linkedEditing": true,
 	"notebook.output.minimalErrorRendering": true,
 	"notebook.output.scrolling": true,
-	"editor.accessibilitySupport": "off",
+	"editor.accessibilitySupport": "on",
 	"files.exclude": {
 		"**/__pycache__": true,
 		"**/.git": false
@@ -227,5 +227,15 @@
 		"**/.forgejo/workflows/*.yml",
 		"**/.forgejo/workflows/*.yaml"
 	],
-	"js/ts.experimental.useTsgo": true
+	"js/ts.experimental.useTsgo": true,
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	},
+	"[markdown]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	},
+	"git.replaceTagsWhenPull": true,
+	"git.openRepositoryInParentFolders": "always",
+	"githubPullRequests.showCreatePullRequestCancelConfirmation": false,
+	"claudeCode.preferredLocation": "panel"
 }
