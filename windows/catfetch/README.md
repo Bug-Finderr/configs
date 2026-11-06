@@ -4,8 +4,7 @@ Shows the original cat image beside system details in Windows Terminal.
 Chafa turns the image into Sixel (a format for drawing images in a terminal),
 then Fastfetch prints the image and system details together.
 
-The image and layout were checked in Windows Terminal 1.24.11321.0 with
-Fastfetch 2.64.2 and Chafa 1.18.2. Use PowerShell 7.
+Use PowerShell 7 in a Windows Terminal version that supports Sixel images.
 
 ## Setup
 
@@ -38,6 +37,7 @@ function catfetch {
 - `catfetch.ps1`: finds the tools and runs the saved setup.
 - `catfetch.sixel`: generated on first run, then reused. Git ignores this file.
 
-Replacing `cat.png` or editing the script causes the image to be rebuilt on the
-next run. The saved image uses the tested 34-column by 17-row size. A different
-terminal font or zoom level may need a new image size and matching layout values.
+The image is rebuilt when `cat.png`, the settings, or the script changes.
+Set `logo.width` and `logo.height` in `catfetch.jsonc` to change both image size
+and text spacing. Delete `catfetch.sixel` to rebuild it after changing the
+terminal font or zoom level.

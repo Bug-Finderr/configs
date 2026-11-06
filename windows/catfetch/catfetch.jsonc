@@ -1,7 +1,5 @@
 {
   "logo": {
-    "type": "raw",
-    "source": "catfetch.sixel",
     "width": 34,
     "height": 17,
     "preserveAspectRatio": true,
@@ -14,70 +12,30 @@
     "printRemaining": false
   },
   "display": {
-    "separator": ": ",
     "color": {
       "keys": "yellow",
       "title": "cyan"
-    },
-    "key": {
-      "type": "string"
     }
   },
   "modules": [
     "title",
     "separator",
-    {
-      "type": "os",
-      "key": "OS"
-    },
-    {
-      "type": "host",
-      "key": "Host"
-    },
-    {
-      "type": "kernel",
-      "key": "Kernel"
-    },
+    "os",
+    "host",
+    "kernel",
     {
       "type": "board",
       "key": "Motherboard"
     },
-    {
-      "type": "uptime",
-      "key": "Uptime"
-    },
-    {
-      "type": "packages",
-      "key": "Packages"
-    },
-    {
-      "type": "shell",
-      "key": "Shell"
-    },
-    {
-      "type": "display",
-      "key": "Display"
-    },
-    {
-      "type": "terminal",
-      "key": "Terminal"
-    },
-    {
-      "type": "cpu",
-      "key": "CPU"
-    },
-    {
-      "type": "gpu",
-      "key": "GPU"
-    },
-    {
-      "type": "memory",
-      "key": "Memory"
-    },
-    {
-      "type": "disk",
-      "key": "Disk"
-    },
+    "uptime",
+    "packages",
+    "shell",
+    "display",
+    "terminal",
+    "cpu",
+    "gpu",
+    "memory",
+    "disk",
     "break",
     "colors"
   ]
