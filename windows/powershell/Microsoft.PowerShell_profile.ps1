@@ -26,4 +26,3 @@ function cx { c; codex --yolo @args }
 function cc { claude --dangerously-skip-permissions @args }
 function ccx { & 'D:/Files/Dev/ccx/ccx.ps1' @args }
 function kp { netstat -ano | findstr ":$($args[0])" | ForEach-Object { ($_ -split '\s+')[-1] } | Sort-Object -Unique | ForEach-Object { taskkill /PID $_ /F } }
-. "$PSScriptRoot/GitHubAccountRouting.ps1"

@@ -1,6 +1,11 @@
 mac/backup_zshrc/backup.log
 .DS_Store
+
 windows/yasb/yasb.log*
 windows/yasb/palette.css.bak
 windows/yasb/yasb_colors.css
 windows/yasb/palette.css.bak
+
+windows/catfetch/*.sixel
+
+windows/gh-route/target/
