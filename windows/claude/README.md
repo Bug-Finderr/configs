@@ -22,20 +22,22 @@ which also has install steps for other machines and agents.
 
 ## Toast notifications
 
-`~/.claude/settings.json` runs `notify.ps1` asynchronously for:
+`notify.ps1` shows a Windows toast for the interactive CLI's main thread only:
 
-- approval, idle, or agent input requests;
-- tool permission requests;
-- completed responses.
+- `Stop`: the turn finished.
+- `Notification` with `permission_prompt`: a permission prompt has waited a few
+  seconds unanswered.
 
-Each toast shows its full working directory as bounded attribution text, so long
-paths wrap or clip inside the notification rather than expanding it.
-Headless CLI and Agent SDK sessions do not produce toasts.
+It exits without a toast unless `CLAUDE_CODE_ENTRYPOINT` is `cli`, which the
+interactive CLI sets for its hooks. T3 Code (`t3-code`), `claude -p` (`sdk-cli`)
+and other SDK hosts handle their own notifications. Subagent events carry
+`agent_id` and are skipped too. `PermissionRequest` and `idle_prompt` are not
+hooked: each repeats a toast the two above already give.
 
-Manual test:
+Manual test (Windows PowerShell 5.1):
 
 ```powershell
-$payload = '{"hook_event_name":"PermissionRequest","tool_name":"Test","cwd":"D:\\Files\\Dev"}'
-$payload | powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass `
-    -File D:\Files\Dev\configs\windows\claude\notify.ps1
+$env:CLAUDE_CODE_ENTRYPOINT = 'cli'
+'{"hook_event_name":"Stop","cwd":"D:/Files/Dev"}' | powershell.exe -NoProfile `
+    -NonInteractive -ExecutionPolicy Bypass -File D:\Files\Dev\configs\windows\claude\notify.ps1
 ```

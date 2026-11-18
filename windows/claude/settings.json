@@ -15,27 +15,7 @@
   "hooks": {
     "Notification": [
       {
-        "matcher": "permission_prompt|idle_prompt|agent_needs_input",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "powershell.exe",
-            "args": [
-              "-NoProfile",
-              "-NonInteractive",
-              "-ExecutionPolicy",
-              "Bypass",
-              "-File",
-              "D:/Files/Dev/configs/windows/claude/notify.ps1"
-            ],
-            "timeout": 10,
-            "async": true
-          }
-        ]
-      }
-    ],
-    "PermissionRequest": [
-      {
+        "matcher": "permission_prompt",
         "hooks": [
           {
             "type": "command",
