@@ -1,11 +1,15 @@
 {
   "cleanupPeriodDays": 99999,
   "env": {
-    "NODE_OPTIONS": "--no-experimental-webstorage"
+    "NODE_OPTIONS": "--no-experimental-webstorage",
+    "CLAUDE_CODE_PLUGIN_DIRS": "D:/Files/Dev/configs/windows/claude/mods/agent-rows"
   },
   "attribution": {
     "commit": "",
     "pr": ""
+  },
+  "permissions": {
+    "defaultMode": "auto"
   },
   "model": "opus",
   "hooks": {
@@ -79,16 +83,10 @@
     "command": "powershell -NoProfile -ExecutionPolicy Bypass -File D:/Files/Dev/configs/windows/claude/statusline.ps1",
     "padding": 0
   },
-  "subagentStatusLine": {
-    "type": "command",
-    "command": "powershell -NoProfile -ExecutionPolicy Bypass -File D:/Files/Dev/configs/windows/claude/statusline.ps1"
-  },
   "enabledPlugins": {
     "superpowers@claude-plugins-official": true,
-    "rust-analyzer-lsp@claude-plugins-official": true,
     "security-guidance@claude-plugins-official": true,
     "cc-plugin-you-should-know@builtin": true,
-    "typescript-native-lsp@anthropic-plugin-directory": true,
     "context7@anthropic-plugin-directory": true
   },
   "extraKnownMarketplaces": {},
@@ -96,7 +94,8 @@
   "effortLevel": "high",
   "modelSettings": {
     "claude-opus-5-5": {
-      "effortLevel": "high"
+      "effortLevel": "high",
+      "autoCompactWindow": 800000
     }
   },
   "ultracode": true,
@@ -119,6 +118,7 @@
     "mode": "hold"
   },
   "timeFormat": "24-hour",
+  "autoMemoryEnabled": false,
   "skipDangerousModePermissionPrompt": true,
   "skipWorkflowUsageWarning": true,
   "theme": "dark",

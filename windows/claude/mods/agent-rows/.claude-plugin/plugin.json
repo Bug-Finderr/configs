@@ -1,0 +1,1 @@
+{ "name": "agent-rows", "version": "0.1.0", "description": "Shows each subagent's label and model in the agent list, in the status line's colors" }

@@ -51,23 +51,6 @@ function Out-Utf8($text) {
     $stdout.Write($bytes, 0, $bytes.Length); $stdout.Flush()
 }
 
-# Claude Code invokes subagentStatusLine once with every visible task. Render the
-# resolved model ID it supplies instead of inferring a model from the task name.
-if ($j -and $j.tasks) {
-    $rows = @($j.tasks | ForEach-Object {
-        if (-not $_.id -or -not $_.model) { return }
-        $name = if ($_.label) { $_.label } elseif ($_.name) { $_.name } else { $_.type }
-        $content = if ($name) {
-            (Fg $LAVENDER) + $name + (Sep) + (Fg $BLUE) + $_.model + "$e[0m"
-        } else {
-            (Fg $BLUE) + $_.model + "$e[0m"
-        }
-        [ordered]@{ id = [string]$_.id; content = $content } | ConvertTo-Json -Compress
-    })
-    if ($rows.Count) { Out-Utf8 (($rows -join "`n") + "`n") }
-    exit
-}
-
 # ---- gather data ----
 $model = $null
 if ($j) { $model = $j.model.display_name; if (-not $model) { $model = $j.model.id } }
