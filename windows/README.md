@@ -2,6 +2,7 @@
 
 - [`catfetch/`](./catfetch/) - cat image and system details for Windows Terminal.
 - [`claude/`](./claude/) - Claude Code settings, status line, and toast notifications.
+- [`codex/`](./codex/) - Codex settings, global `AGENTS.md`, and browser settings; the same files in `~/.codex` are symbolic links to these.
 - [`gh-route/`](./gh-route/) - `gh.exe` shim that picks the GitHub account by folder.
 - [`powershell/`](./powershell/) - shared profile and scheduled maintenance.
 - [`windhawk/`](./windhawk/) - exports for the taskbar, Start menu, notification center, and window corners.

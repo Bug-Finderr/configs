@@ -1,0 +1,192 @@
+model = "gpt-6.1-sol"
+approvals_reviewer = "user"
+personality = "pragmatic"
+service_tier = "default"
+plan_mode_reasoning_effort = "ultra"
+approval_policy = "never"
+sandbox_mode = "danger-full-access"
+model_reasoning_effort = "high"
+notify = [ "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1117.3838.0_x64__2p2nqsd0c76g0\\app\\resources\\cua_node\\bin\\node_modules\\@oai\\sky\\bin\\windows\\codex-computer-use.exe", "turn-ended" ]
+[projects.'d:\files\dev']
+trust_level = "trusted"
+
+[projects.'d:\files\dev\bug-finderr']
+trust_level = "trusted"
+
+[projects.'d:\files\dev\api-proxy']
+trust_level = "trusted"
+
+[projects.'d:\files\dev\vlc-pip']
+trust_level = "trusted"
+
+[projects.'d:\files\dev\wake-rs']
+trust_level = "trusted"
+
+[projects.'d:\files\dev\aistudio']
+trust_level = "trusted"
+
+[projects.'d:\files\dev\aistudio\argos-ddt-prod']
+trust_level = "trusted"
+
+[projects.'d:\files\dev\claude-sessions-cli']
+trust_level = "trusted"
+
+[projects.'c:\users\sudharsan\appdata\local\temp']
+trust_level = "trusted"
+
+[projects.'d:\files\dev\aistudio\emk-signal']
+trust_level = "trusted"
+
+[projects.'d:\files\dev\yugaantar']
+trust_level = "trusted"
+
+[projects.'d:\files\dev\aistudio\project-tracker-dashboard']
+trust_level = "trusted"
+
+[projects.'d:\files\dev\aistudio\signal-l-s']
+trust_level = "trusted"
+
+[projects.'d:\files\dev\aistudio\signal-servion']
+trust_level = "trusted"
+
+[projects.'d:\files\dev\skills']
+trust_level = "trusted"
+
+[projects.'d:\files\dev\cheating-mommy']
+trust_level = "trusted"
+
+[tui]
+terminal_title = ["activity", "run-state", "thread-title"]
+status_line = ["model-with-reasoning", "current-dir", "context-remaining", "context-window-size", "git-branch", "pull-request-number", "branch-changes"]
+status_line_use_colors = true
+theme = "monokai-extended"
+session_picker_view = "dense"
+
+[tui.keymap.editor]
+delete_backward_word = ["alt-backspace", "ctrl-backspace", "ctrl-w", "ctrl-alt-h"]
+kill_whole_line = "ctrl-shift-backspace"
+
+[windows]
+sandbox = "elevated"
+
+[notice]
+fast_default_opt_out = true
+hide_rate_limit_model_nudge = true
+
+[marketplaces.openai-bundled]
+source_type = "local"
+source = '\\?\C:\Users\Sudharsan\.codex\.tmp\bundled-marketplaces\openai-bundled'
+
+[marketplaces.openai-primary-runtime]
+source_type = "local"
+source = '\\?\C:\Users\Sudharsan\.cache\codex-runtimes\codex-primary-runtime\plugins\openai-primary-runtime'
+
+[plugins."documents@openai-primary-runtime"]
+enabled = false
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = false
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = false
+
+[plugins."superpowers@openai-curated"]
+enabled = true
+
+[plugins."codex-security@openai-curated"]
+enabled = true
+
+[plugins."google-drive@openai-curated"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = false
+
+[plugins."superpowers@openai-api-curated"]
+enabled = true
+
+[plugins."codex-security@openai-api-curated"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."unified-computer-use@openai-bundled"]
+enabled = true
+
+[plugins."chrome@openai-bundled"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
+[features]
+terminal_resize_reflow = true
+memories = true
+goals = true
+prevent_idle_sleep = true
+js_repl = false
+
+[memories]
+use_memories = true
+generate_memories = true
+
+[desktop]
+ambient-suggestions-enabled = true
+appearanceTheme = "dark"
+appearanceDarkCodeThemeId = "github"
+selected-avatar-id = "fireball"
+conversationDetailMode = "STEPS_COMMANDS"
+show-context-window-usage = true
+followUpQueueMode = "steer"
+git-show-sidebar-pr-icons = true
+open-local-url-in-target-preference = "external-browser"
+git-pull-request-merge-method = "squash"
+git-branch-prefix = "cx/"
+usePointerCursors = true
+appearanceDiffMarkerStyle = "color"
+enabled-reasoning-efforts = ["low", "medium", "high", "xhigh", "ultra"]
+git-create-pull-request-as-draft = false
+show-ultra-in-model-picker-slider = false
+worktree-upstream-refresh-mode = "best-effort"
+
+[desktop.appearanceDarkChromeTheme]
+accent = "#1f6feb"
+contrast = 50
+ink = "#e6edf3"
+opaqueWindows = true
+surface = "#0d1117"
+
+[desktop.appearanceDarkChromeTheme.fonts]
+code = '"Geist Mono", ui-monospace, "SFMono-Regular"'
+ui = "Geist, Inter"
+
+[desktop.appearanceDarkChromeTheme.semanticColors]
+diffAdded = "#3fb950"
+diffRemoved = "#f85149"
+skill = "#bc8cff"
+
+[mcp_servers.openaiDeveloperDocs]
+url = "https://developers.openai.com/mcp"
+
+[mcp_servers.blender]
+command = "uvx"
+args = ["--from", "mcp-for-blender==2.0.0", "mcp-for-blender"]
+
+[mcp_servers.blender.env]
+BLENDER_HOST = "127.0.0.1"
+DISABLE_TELEMETRY = "true"
+
+[mcp_servers.figma-console]
+command = "C:/Users/Sudharsan/AppData/Roaming/fnm/node-versions/v26.5.0/installation/node.exe"
+args = ["C:/Users/Sudharsan/AppData/Local/Codex/MCP/figma-console/node_modules/figma-console-mcp/dist/local.js"]
+startup_timeout_sec = 30.0
