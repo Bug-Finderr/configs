@@ -90,7 +90,6 @@
 	"editor.linkedEditing": true,
 	"notebook.output.minimalErrorRendering": true,
 	"notebook.output.scrolling": true,
-	"editor.accessibilitySupport": "on",
 	"files.exclude": {
 		"**/__pycache__": true,
 		"**/.git": false
