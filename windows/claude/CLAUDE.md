@@ -41,7 +41,7 @@ Every rule here is a hard requirement in all work and output: code, replies, pla
 - Any agent using a browser reuses one tab or closes what it opens; prompts for subagents that browse carry this rule.
 - Every cloud resource made for a side task is deleted with its network, keys and disks the moment the task ends, then checked gone in every region used.
 - Secrets in system env and .env files may be piped by name to get past classifier blocks; never print them.
-- Use `rg` over grep, `fd` over find, `sd` over sed, `jq` over inline JSON scripts, `ast-grep` for code-shape search and rewrites, `duckdb` to query CSV, JSON or JSONL files, `magick` over image scripts, `playwright-cli` over hand-written scripts, and `bunx @firecrawl/anydoc` to turn non-text documents into Markdown before reading them.
+- Use `rg` over grep, `fd` over find, `sd` over sed, `dust` over du, `jq` over inline JSON scripts, `ast-grep` for code-shape search and rewrites, `duckdb` to query CSV, JSON or JSONL files, `magick` over image scripts, `playwright-cli` over hand-written scripts, and `bunx @firecrawl/anydoc` to turn non-text documents into Markdown before reading them.
 
 ## Models
 

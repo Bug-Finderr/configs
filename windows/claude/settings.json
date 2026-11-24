@@ -13,6 +13,21 @@
   },
   "model": "opus",
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:/Users/Sudharsan/.bun/bin/bun.exe",
+            "args": [
+              "D:/Files/Dev/configs/windows/claude/prefer-fast-tools.ts"
+            ],
+            "timeout": 10
+          }
+        ]
+      }
+    ],
     "Notification": [
       {
         "matcher": "permission_prompt",
